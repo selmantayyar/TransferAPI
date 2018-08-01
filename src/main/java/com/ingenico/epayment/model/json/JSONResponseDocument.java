@@ -7,7 +7,7 @@ public class JSONResponseDocument<T,K> {
 
     private T data;
 
-    private List<K> errors = new ArrayList<K>();
+    private List<K> errors = new ArrayList<>();
 
     public T getData() {
         return data;

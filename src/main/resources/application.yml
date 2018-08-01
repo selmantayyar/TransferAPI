@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.HSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    type: org.springframework.jdbc.datasource.DriverManagerDataSource
+    driverClassName: org.hsqldb.jdbcDriver
+    url: jdbc:hsqldb:mem:testdb
+    username: sa
+    password:
+
+server:
+  servlet:
+    contextPath: /ingenico

@@ -1,21 +1,12 @@
 package com.ingenico.epayment.model.json;
 
-public class AccountSuccessResponse {
+public class AccountSuccessResponse extends SuccessResponse {
 
-    private String message;
     private Long accountId;
 
     public AccountSuccessResponse(String message, Long id) {
-        this.message=message;
+        super(message);
         accountId=id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public Long getAccountId() {

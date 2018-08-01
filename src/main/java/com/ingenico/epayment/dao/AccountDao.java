@@ -3,6 +3,7 @@ package com.ingenico.epayment.dao;
 import com.ingenico.epayment.entity.Account;
 import java.io.Serializable;
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 
 public interface AccountDao {
@@ -10,17 +11,12 @@ public interface AccountDao {
     Account persist(Account account);
 
     /**
-     * @param serializable
-     * @return true if an object with the given serializable exists
-     */
-    boolean exists(Serializable serializable);
-
-    /**
      * saves or updates the object
      *
      * @param account of type Account
      */
     Account saveOrUpdate(Account account);
+
 
     /**
      * @return all of T otjects
@@ -32,5 +28,12 @@ public interface AccountDao {
      * @return the object
      */
     Account get(Serializable serializable);
+
+    Account getWithLock(Serializable serializable);
+
+    @Transactional
+    void removeAll();
+
+    void flushAndClear();
 
 }

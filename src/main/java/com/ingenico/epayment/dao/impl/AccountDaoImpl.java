@@ -5,6 +5,7 @@ import com.ingenico.epayment.entity.Account;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,15 +25,11 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public boolean exists(Serializable serializable) {
-       return entityManager.find(Account.class, serializable) != null;
-    }
-
-    @Override
     public Account saveOrUpdate(Account account) {
         Account newAccount = entityManager.merge(account);
         return newAccount;
     }
+
 
     @Override
     public List<Account> getAll() {
@@ -41,6 +38,23 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public Account get(Serializable serializable) {
-        return  (Account) entityManager.find(Account.class, serializable);
+        return  entityManager.find(Account.class, serializable);
+    }
+
+    @Override
+    public Account getWithLock(Serializable serializable) {
+        return  entityManager.find(Account.class, serializable,LockModeType.PESSIMISTIC_READ);
+    }
+
+    @Override
+    @Transactional
+    public void removeAll() {
+        entityManager.createQuery("delete from " + Account.class.getName()).executeUpdate();
+    }
+
+    @Override
+    public void flushAndClear() {
+       entityManager.flush();
+       entityManager.clear();
     }
 }
