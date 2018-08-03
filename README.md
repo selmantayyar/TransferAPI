@@ -43,5 +43,5 @@ Also TransferControllerTest class includes enough testing,including sending conc
 ## Limitations
 * To facilictate development and testing,application keeps data in-memory database.This should be of course changed.
 * Currently no security implemented due to time constraints.Token-based security should be implemented.One endpoint 
-to log in and to get the sort-lived token,another endpoint for refreshing the token should be created.Users along with
+to log in and to get the short-lived token,another endpoint for refreshing the token should be created.Users along with
 their token should be kept in a proper database.
